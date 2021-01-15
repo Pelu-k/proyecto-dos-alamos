@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const User = require('../models/User');
 const Joi = require('@hapi/joi');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
+const User = require('../models/User');
 const { appConfig } = require('../config');
+const ValidateToken = require('../middleware/ValidateToken')
 
 // Estructura de validación de datos para el registro de usuarios
 const schemaRegister = Joi.object({
@@ -128,4 +130,6 @@ router.post('/login', async (req, res, next) => {
 
 
 
-module.exports = router;
+module.exports = {
+    router
+};

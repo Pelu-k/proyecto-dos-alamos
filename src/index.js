@@ -16,5 +16,5 @@ app.use(bodyparser.json());
 app.use(require('./routes/entries.routes'));
 
 app.listen(app.get('port'), () => {
-    console.log(`Escuchando en: ${appConfig.host}:${appConfig.port}`);
+    console.log(`Escuchando en: http://${appConfig.host}:${appConfig.port}`);
 });
