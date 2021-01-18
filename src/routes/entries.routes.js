@@ -1,16 +1,9 @@
 const router = require('express').Router();
-const Joi = require('@hapi/joi');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
-const User = require('../models/User');
-const { appConfig } = require('../config');
 const ValidateToken = require('../middleware/ValidateToken');
 
 const { register } = require('../controllers/register.controller');
 const { login } = require('../controllers/login.controller');
-
-
 
 router.get('/', async (req, res, next) => {
     res.json({
