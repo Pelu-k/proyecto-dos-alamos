@@ -5,14 +5,9 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
 const { appConfig } = require('../config');
-const ValidateToken = require('../middleware/ValidateToken')
+const ValidateToken = require('../middleware/ValidateToken');
 
-// Estructura de validación de datos para el registro de usuarios
-const schemaRegister = Joi.object({
-    name: Joi.string().min(6).max(255).required(),
-    email: Joi.string().min(10).max(255).required().email(),
-    password: Joi.string().min(6).max(255).required()
-});
+const { register } = require('../controllers/register.controller')
 
 // Estructura de validación de datos para el inicio de sesión
 const schemaLogin = Joi.object({
@@ -20,10 +15,14 @@ const schemaLogin = Joi.object({
     password: Joi.string().min(6).max(255).required()
 })
 
-router.get('/', (req, res, next) => {
-    res.json({
-        estado: true,
-        mensaje: 'Funcionando, Home'
+router.get('/', async (req, res, next) => {
+//    res.json({
+//        estado: true,
+//        mensaje: 'Funcionando, Home'
+//    });
+    const user = await User.findOne({email: 'micorreo@gmail.com'})
+    res.render('index.ejs', {
+        user: user
     });
 });
 
@@ -35,47 +34,7 @@ router.get('/register', (req, res, next) => {
     });
 })
 
-router.post('/register', async (req, res, next) => {
-
-    // validar datos del usuario
-    const { error } = schemaRegister.validate(req.body);
-    if (error) {
-        return res.status(400).json({
-            error: error.details[0].message
-        });
-    }
-
-    // Validar correo unico
-    const isEmailExist = await User.findOne({ email: req.body.email });
-    if (isEmailExist) {
-        return res.status(400).json({
-            error: 'El email ya esta en uso'
-        });
-    }
-
-    // Cifrar contraseña
-    const salt = await bcrypt.genSalt(10);
-    const password = await bcrypt.hash(req.body.password, salt)
-
-    // Crear nuevo usuario
-    const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: password
-    });
-
-    // Guardar usuario
-    try {
-        const saveUser = await user.save();
-        res.json({
-            error: null,
-            data: saveUser,
-            mensaje: 'Usuario registrado'
-        })
-    } catch (error) {
-        res.status(400).json({error})
-    }
-});
+router.post('/register', register);
 
 router.get('/login', (req, res, next) => {
     res.json({
