@@ -1,10 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-const {login} = require('../controllers/login.controller')
-
-const User = require('../models/User')
-
 router.get('/', async (req, res, next) => {
     res.render('index', {success: ''});
 });
@@ -15,7 +11,7 @@ router.get('/register', (req, res, next) => {
 })
 
 router.post('/register', passport.authenticate('local-register', {
-    successRedirect: '/profile',
+    successRedirect: '/user/profile',
     failureRedirect: '/register',
     failureFlash: true
 }));
@@ -26,7 +22,7 @@ router.get('/login', (req, res, next) => {
 })
 
 router.post('/login', passport.authenticate('login', {
-    successRedirect: '/profile',
+    successRedirect: '/user/profile',
     failureRedirect: '/login',
     failureFlash: true
 }))
@@ -37,7 +33,7 @@ router.get('/logout', isAuthenticated, (req, res, next) => {
 })
 // Rutas restringidas
 
-router.get('/profile', isAuthenticated, async (req, res, next) => {
+router.get('/user/profile', isAuthenticated, async (req, res, next) => {
     res.render('profile', {success: `Bienvenido/a`});
 })
 
