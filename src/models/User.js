@@ -18,7 +18,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 6
     },
-    direc: {
+    address: {
         type: String,
         required: true,
         min: 10,
@@ -43,9 +43,9 @@ const userSchema = new Schema({
         required: true,
         default: "Paciente"
     },
-    history: [
+    record: [
         {
-            type: History
+            type: Record
         }
     ]
 });
