@@ -21,7 +21,7 @@ const userSchema = new Schema({
     address: {
         type: String,
         required: true,
-        min: 10,
+        min: 5,
         max: 255
     },
     phone: {
@@ -45,7 +45,7 @@ const userSchema = new Schema({
     },
     record: [
         {
-            type: Record
+            type: String
         }
     ]
 });
