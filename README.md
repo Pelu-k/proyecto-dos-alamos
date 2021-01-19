@@ -2,6 +2,15 @@
 
 Proyecto semestral para la clase de gestión ágil de proyectos
 
+## Integrantes
+
+* [Ricardo Benites](https://github.com/dezk123)
+* [Matías Chacana](https://github.com/matiaszntc)
+* [Sebastián Lara](https://github.com/Pelu-k)
+* Ignacio Soto
+* Pablo Verdugo
+* Lisandro Zúñiga
+
 ## Caso
 
 El Centro Médico “Dos Álamos”, comenzó como una empresa familiar, que principalmente, sevdedicaban a facilitar espacios totalmente implementados en su edificio a médicos generales, y devespecialidad en los cuales podían desempeñar su labor en forma independiente (auto gestionados),vcon el tiempo se han incorporado otros servicios como kinesiología, oftalmología y otorrinolaringología que, por su naturaleza, necesitan de espacios con implementación particular.
