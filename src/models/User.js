@@ -18,7 +18,23 @@ const userSchema = new Schema({
         required: true,
         minlength: 6
     },
-    date: {
+    direc: {
+        type: String,
+        required: true,
+        min: 10,
+        max: 255
+    },
+    phone: {
+        type: String,
+        required: true,
+        min: 12,
+        max: 12
+    },
+    birthday: {
+        type: Date,
+        required: true,
+    },
+    dateRegister: {
         type: Date,
         default: Date.now
     },
@@ -26,7 +42,12 @@ const userSchema = new Schema({
         type: String,
         required: true,
         default: "Paciente"
-    }
-})
+    },
+    history: [
+        {
+            type: History
+        }
+    ]
+});
 
 module.exports = model('User', userSchema);
