@@ -7,7 +7,9 @@ const { login } = require('../controllers/login.controller');
 
 router.get('/', async (req, res, next) => {
 
-    res.render('index')
+    res.render('index',{
+        titulo: 'Centro Medico Dos Alamos'
+    })
 /*     res.json({
         estado: true,
         mensaje: 'Funcionando, Home'
@@ -17,7 +19,9 @@ router.get('/', async (req, res, next) => {
 // Registro y autenticación de usuario
 router.get('/register', (req, res, next) => {
 
-    res.render('registrar')
+    res.render('registrar',{
+        titulo: 'Registro'
+    })
 /*     res.json({
         estado: true,
         mensaje: 'Funcionando, Register'
@@ -27,7 +31,9 @@ router.get('/register', (req, res, next) => {
 router.post('/register', register);
 
 router.get('/login', (req, res, next) => {
-    res.render('login')
+    res.render('login',{
+        titulo:'Inicio Sesion'
+    })
 /*     res.json({
         estado: true,
         mensaje: 'Funcionando, Login'
