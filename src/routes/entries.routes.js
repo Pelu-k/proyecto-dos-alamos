@@ -7,7 +7,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // Registro y autenticación de usuario
-router.get('/register', (req, res, next) => {
+router.get('/register', isNotAuthenticated, (req, res, next) => {
     res.render('register');
 });
 
@@ -17,7 +17,7 @@ router.post('/register', passport.authenticate('register', {
     failureFlash: true
 }));
 
-router.get('/login', (req, res, next) => {
+router.get('/login', isNotAuthenticated, (req, res, next) => {
     res.render('login')
     //res.json({error: null, msg: 'Login'})
 });
@@ -50,6 +50,13 @@ function isAuthenticated(req, res, next) {
         return next();
     }
     res.redirect('/')
+}
+
+function isNotAuthenticated(req, res, next){
+    if (!req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/');
 }
 
 module.exports = router;

@@ -7,6 +7,12 @@ const userSchema = new Schema({
         min: 2,
         max: 255
     },
+    run: {
+        type: String,
+        required: true,
+        min: 9,
+        max: 10
+    },
     email: {
         type: String,
         required: true,
