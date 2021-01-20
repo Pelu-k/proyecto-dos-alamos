@@ -1,0 +1,17 @@
+<%- include('./layouts/header', {title: 'Perfil - Centro medico Dos Alamos'}); %> 
+
+<% if (successRegister != '') { %>
+    <p><%= successRegister %> </p>
+<% } %>
+
+<div>
+    <ul>
+        <li><%= user.name %></li>
+    </ul>
+</div>
+
+<div>
+    <a href="http://localhost:3000/logout">Logout</a>
+</div>
+
+<%- include('./layouts/footer'); %> 

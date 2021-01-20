@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: #9CECFB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+} 
+
+.titulo {
+    font-size: 40px;
+}
+
+.contenedor {
+    width: 100%;
+    padding: 15px;
+}
+
+.formulario {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+    font-size: 20px;
+    width: 82%;
+    padding: 10px;
+    border: 1px solid #aaa;     
+}
+
+.input-contenedor {
+    margin-bottom: 15px;   
+    width: 100%;
+    text-align: center;
+}
+
+.incon {
+    min-width: 15px;
+    text-align: center;
+    margin: 2px;
+}
+
+.button {
+    border: none;
+    width: 98%;
+    color: white;
+    background-color: #1a2537;
+    font-size: 20px;
+    padding: 15px ;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.p1 {
+    text-align: center;
+}
+
+.a1 {
+    text-align: right;
+    text-decoration: none;
+    color: #1a2537;
+}
+ 
+.a1:hover {
+    color: gray;
+    text-decoration: underline;
+}
+
+.button:hover {
+    color: gray;
+}

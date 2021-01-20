@@ -1,0 +1,23 @@
+<%- include('./layouts/header', {title: 'Login - Centro medico Dos Alamos'}); %> 
+
+<% if (errorLogin != '') { %>
+    <p><%= errorLogin %> </p>
+<% } %>
+
+<div>
+    <form action="" method="post" class="formulario">
+        <div class="contenedor">
+            <div class="input-contenedor">
+                <i class="fas fa-envelope icon"></i>
+                <input type="email" name="email" id="email" placeholder="Ingresar correo">
+            </div>
+            <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+                <input type="password" name="password" id="password" placeholder="Ingresar contraseña">
+            </div>
+            <input type="submit" value="Aceptar" class="button">
+        </div>
+    </form>
+</div>
+
+<%- include('./layouts/footer'); %> 

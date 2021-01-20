@@ -1,0 +1,41 @@
+<%- include('./layouts/header', {title: 'Registro - Centro medico Dos Alamos'}); %> 
+
+<% if (errorRegister != '') { %>
+    <p><%= errorRegister %> </p>
+<% } %>
+
+<div>
+    <form method="POST" class="formulario">
+        <h1>Registro</h1>
+        <div class="contenedor">
+            <div class="input-contenedor">
+                <i class="fas fa-user icon"></i>
+                <input type="text" placeholder="Nombre">
+            </div>
+            <div class="input-contenedor">
+                <i class="fas fa-envelope icon"></i>
+                <input type="text" placeholder="Correo">
+            </div>
+            <div class="input-contenedor">
+                <i class="fas fa-compass"></i>
+                <input type="text" placeholder="Dirección">
+            </div>
+            <div class="input-contenedor">
+                <i class="fas fa-phone"></i>
+                <input type="text" placeholder="9 8888 8888">
+            </div>
+            <div class="input-contenedor">
+                <i class="fas fa-phone"></i>
+                <input type="date" placeholder="Fecha de Naciemiento">
+            </div>
+            <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+                <input type="password" placeholder="Password">
+            </div>
+            <input type="submit" value="Aceptar" class="button">
+            <p class="p1">¿Ya tienes una cuenta? <a href="http://localhost:3000/login" class="a1">Iniciar Sesion</a></p>
+        </div>
+    </form>
+</div>
+
+<%- include('./layouts/footer'); %> 
