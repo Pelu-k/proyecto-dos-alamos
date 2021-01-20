@@ -5,32 +5,32 @@
 <% } %>
 
 <div>
-    <form method="POST" class="formulario">
+    <form action="" method="POST" class="formulario">
         <h1>Registro</h1>
         <div class="contenedor">
             <div class="input-contenedor">
                 <i class="fas fa-user icon"></i>
-                <input type="text" placeholder="Nombre">
+                <input type="text" name="name" id="name" placeholder="Nombre">
             </div>
             <div class="input-contenedor">
                 <i class="fas fa-envelope icon"></i>
-                <input type="text" placeholder="Correo">
+                <input type="text" name="email" id="email" placeholder="Correo">
             </div>
             <div class="input-contenedor">
                 <i class="fas fa-compass"></i>
-                <input type="text" placeholder="Dirección">
+                <input type="text" name="address" id="address" placeholder="Dirección">
             </div>
             <div class="input-contenedor">
                 <i class="fas fa-phone"></i>
-                <input type="text" placeholder="9 8888 8888">
+                <input type="text" name="phone" id="phone" placeholder="+56912345678">
             </div>
             <div class="input-contenedor">
                 <i class="fas fa-phone"></i>
-                <input type="date" placeholder="Fecha de Naciemiento">
+                <input type="date" name="birthday" id="birthday" placeholder="Fecha de Naciemiento">
             </div>
             <div class="input-contenedor">
                 <i class="fas fa-key icon"></i>
-                <input type="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password">
             </div>
             <input type="submit" value="Aceptar" class="button">
             <p class="p1">¿Ya tienes una cuenta? <a href="http://localhost:3000/login" class="a1">Iniciar Sesion</a></p>

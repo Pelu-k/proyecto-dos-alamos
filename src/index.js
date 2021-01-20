@@ -5,10 +5,10 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const flash = require('connect-flash');
 const passport = require('passport')
+const morgan = require('morgan');
 
 const app = express();
 const db = require('./database/Connection');
-//require('./controllers/')
 
 // Configuración
 app.set('port', appConfig.port || 8080);
@@ -29,10 +29,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyparser.json());
 app.use((req, res, next) => {
-    app.locals.user = req.user;
     app.locals.errorLogin = req.flash('errorLogin');
     app.locals.errorRegister = req.flash('errorRegister');
     app.locals.successRegister = req.flash('successRegister');
+    app.locals.user = req.user;
     next();
 })
 

@@ -4,6 +4,17 @@
     <p><%= successRegister %> </p>
 <% } %>
 
+<% if (user.rol === 'Paciente') { %>
+    <h1>Perfil Paciente</h1>
+<% } else if (user.rol === 'Secretaria'){ %>
+    <h1>Perfil Secretaria</h1>
+<% } else if (user.rol === 'Medico') { %>
+    <h1>Perfil Médico</h1>
+<% } else { %>
+    <h1>Perfil Administrador</h1>
+<% } %>
+ 
+
 <div>
     <ul>
         <li><%= user.name %></li>
@@ -11,7 +22,7 @@
 </div>
 
 <div>
-    <a href="http://localhost:3000/logout">Logout</a>
+    <a href="http://localhost:3000/user/logout">Logout</a>
 </div>
 
 <%- include('./layouts/footer'); %> 

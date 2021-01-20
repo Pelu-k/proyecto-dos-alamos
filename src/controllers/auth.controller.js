@@ -7,16 +7,16 @@ const User = require('../models/User');
 
 // Estructura de validación de datos para el inicio de sesión
 const schemaLogin = Joi.object({
-    email: Joi.string().min(6).max(255).required(),
+    email: Joi.string().min(2).max(255).required(),
     password: Joi.string().min(6).max(255).required()
 })
 
 // Estructura de validación de datos para el registro de usuarios
 const schemaRegister = Joi.object({
-    name: Joi.string().min(6).max(255).required(),
-    email: Joi.string().min(10).max(255).required().email(),
+    name: Joi.string().min(2).max(255).required(),
+    email: Joi.string().min(2).max(255).required().email(),
     password: Joi.string().min(6).max(255).required(),
-    address: Joi.string().min(5).max(255).required(),
+    address: Joi.string().min(2).max(255).required(),
     phone: Joi.string().min(12).max(12).required(),
     birthday: Joi.date().required()
 });
@@ -39,7 +39,7 @@ passport.use('login', new LocalStrategy({
     // Validar campos
     const { error } = schemaLogin.validate(req.body);
     if (error) {
-        return done(null, false, req.flash('errorLogin', 'Los datos no son validos'))
+        return done(null, false, req.flash('errorLogin', 'Los datos no son validos, ' + error.message))
     }
 
     // Validar email
@@ -67,7 +67,7 @@ passport.use('register', new LocalStrategy({
     // Validar datos
     const { error } = schemaRegister.validate(req.body);
     if (error) {
-        return done(null, false, req.flash('errorRegister', 'Los datos no son validos'));
+        return done(null, false, req.flash('errorRegister', 'Los datos no son validos, ' + error.message));
     }
 
     // Validar correo unico
@@ -94,7 +94,7 @@ passport.use('register', new LocalStrategy({
         const saveUser = await newUser.save();
         return done(null, newUser, req.flash('successRegister', 'Bienvenido al sistema del Centro Médico Dos Alamos'));
     } catch (error) {
-        
+        return done(null, false, req.flash('errorRegister', 'Error: ' + error))
     }
 }))
 
