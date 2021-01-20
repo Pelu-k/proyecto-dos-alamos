@@ -3,22 +3,22 @@ const passport = require('passport');
 require('../controllers/auth.controller');
 
 router.get('/', async (req, res, next) => {
-    res.render('index', {success: ''});
+    res.render('index');
 });
 
 // Registro y autenticación de usuario
 router.get('/register', (req, res, next) => {
-    res.render('register', {errorRegister: ''});
+    res.render('register');
 });
 
 router.post('/register', passport.authenticate('register', {
-    successRedirect: '/user/profile',
+    successRedirect: '/user',
     failureRedirect: '/register',
     failureFlash: true
 }));
 
 router.get('/login', (req, res, next) => {
-    res.render('login', {errorLogin: ''})
+    res.render('login')
     //res.json({error: null, msg: 'Login'})
 });
 
