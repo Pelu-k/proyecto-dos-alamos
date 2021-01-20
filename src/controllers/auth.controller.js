@@ -59,7 +59,7 @@ passport.use('login', new LocalStrategy({
 }))
 
 // Registro de usuario
-passport.use('local-register', new LocalStrategy({
+passport.use('register', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
