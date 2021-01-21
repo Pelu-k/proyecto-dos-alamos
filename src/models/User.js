@@ -4,13 +4,13 @@ const userSchema = new Schema({
     name: {
         type: String,
         required: true,
-        min: 6,
+        min: 2,
         max: 255
     },
     email: {
         type: String,
         required: true,
-        min: 10,
+        min: 2,
         max: 255
     },
     password: {
@@ -21,7 +21,7 @@ const userSchema = new Schema({
     address: {
         type: String,
         required: true,
-        min: 5,
+        min: 2,
         max: 255
     },
     phone: {

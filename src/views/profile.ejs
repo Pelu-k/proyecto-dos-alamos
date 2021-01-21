@@ -8,44 +8,46 @@
     <h1>Perfil Paciente</h1>
 <% } else if (user.rol === 'Secretaria'){ %>
     <h1>Perfil Secretaria</h1>
-    <% for (var i = 0; i < user.length; i++) { %>
-            <div class="container">
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Contacto</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row"><%= i.name %></th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>  
-    <%  }  %>
+    <% user.forEach(i => { %>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">i.name</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Contacto</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row"><%= i.name %></th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+<%  })  %>
 <% } else if (user.rol === 'Medico') { %>
     <h1>Perfil Médico</h1>
 <% } else { %>
     <h1>Perfil Administrador</h1>
 <% } %>
+ 
+
 <div>
     <ul>
         <li><%= user.name %></li>
@@ -53,7 +55,7 @@
 </div>
 
 <div>
-    <a href="http://localhost:3000/logout">Logout</a>
+    <a href="http://localhost:3000/user/logout">Logout</a>
 </div>
 
 <%- include('./layouts/footer'); %> 
