@@ -4,7 +4,8 @@ const { appConfig } = require('./config');
 const bodyparser = require('body-parser');
 const path = require('path');
 const flash = require('connect-flash');
-const passport = require('passport')
+const passport = require('passport');
+
 const app = express();
 const db = require('./database/Connection');
 

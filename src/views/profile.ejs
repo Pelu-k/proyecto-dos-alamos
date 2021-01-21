@@ -7,55 +7,61 @@
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
 <% } else if (user.rol === 'Secretaria'){ %>
-    <h1>Perfil Secretaria</h1>
-    <% user.forEach(i => { %>
+    <h1 class="p-4 text-info">Perfil Secretaria</h1>
+    <% console.log(user)  %>
         <div class="container">
-            <table class="table table-hover">
+            <table class="table table-hover table-dark ">
                 <thead>
                 <tr>
-                    <th scope="col">i.name</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Estado</th>
+                    <th scope="col">Medico</th>
+                    <th scope="col">Horario</th>
                     <th scope="col">Contacto</th>
+                    <th scope="col">Estado </th>
+                    <th scope="col">Opciones </th>
                 </tr>
                 </thead>
+
                 <tbody>
+                <% %>
+                <% users.forEach(i => { %>
+
+                <% if (i.rol == "Medico") { %>
                 <tr>
-                    <th scope="row"><%= i.name %></th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td><%= i.name %></td>
+                    <td> 9:00 a 18:00</td>
+                    <td><a href="mailto:micorreo@gmail.com?" ><%= i.email %></a></td>
+                    <td> <input type="text" id="<%= i._id %>" value="Disponible" style="color: green;" disabled></td>
+                    <td><button class="btn btn-primary" id="btnModificar" onclick="btnMod()"> Modificar </button></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                <script>
+                    function btnMod () { 
+                        console.log('works')
+                        var disabled = document.getElementById("<%= i._id %>").disabled;
+                          if (disabled) {
+                        document.getElementById("<%= i._id %>").disabled = false;
+                        } else {
+                            document.getElementById("<%= i._id %>").disabled = true;
+                        }
+                
+                                 }
+                </script>
+                <% } %>
+                <%  }) %>
+
                 </tbody>
             </table>
         </div>
-<%  })  %>
+
 <% } else if (user.rol === 'Medico') { %>
     <h1>Perfil Médico</h1>
 <% } else { %>
     <h1>Perfil Administrador</h1>
 <% } %>
  
-
 <div>
     <ul>
         <li><%= user.name %></li>
     </ul>
-</div>
-
-<div>
-    <a href="http://localhost:3000/user/logout">Logout</a>
 </div>
 
 <%- include('./layouts/footer'); %> 
