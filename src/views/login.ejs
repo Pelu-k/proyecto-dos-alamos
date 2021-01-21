@@ -1,11 +1,11 @@
 <%- include('./layouts/header', {title: 'Login - Centro medico Dos Alamos'}); %> 
 
 <% if (errorLogin != '') { %>
-    <p><%= errorLogin %> </p>
+    <p class="alert alert-danger text-center"><%= errorLogin %> </p>
 <% } %>
 
 <div>
-    <form action="" method="post" class="formulariologin">
+    <form action="" method="post" class="formulariologin" id="getFormularioLogin">
         <h1  > Inicio de sesión</h1>
         <div class="contenedor1">
             <div class="input-contenedor">

@@ -18,7 +18,8 @@ const schemaRegister = Joi.object({
     password: Joi.string().min(6).max(255).required(),
     address: Joi.string().min(2).max(255).required(),
     phone: Joi.string().min(12).max(12).required(),
-    birthday: Joi.date().required()
+    birthday: Joi.date().required(),
+    run: Joi.string().min(9).max(10).required(),
 });
 
 passport.serializeUser((user, done) => {
@@ -87,7 +88,8 @@ passport.use('register', new LocalStrategy({
         password: passwordCrypt,
         address: req.body.address,
         phone: req.body.phone,
-        birthday: req.body.birthday
+        birthday: req.body.birthday,
+        run: req.body.run
     });
 
     try {

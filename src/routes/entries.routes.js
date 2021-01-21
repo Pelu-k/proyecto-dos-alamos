@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
-
-
 require('../controllers/auth.controller');
+
 const User = require('../models/User');
 
 router.get('/', async (req, res, next) => {
@@ -45,9 +44,17 @@ router.get('/user/logout', isAuthenticated, (req, res, next) => {
 
 router.get('/user/profile', isAuthenticated, async (req, res, next) => {
     const users = await User.find();
-    res.render('profile', {users: users});
-
+    res.render('profile', {users});
 });
+
+router.get('/doctors', isAuthenticated, async (req, res, next) => {
+    if (req.user.rol === 'Secretaria' || req.user.rol === 'Administrador') {
+        const doctors = await User.find({rol: 'Doctor'});
+        res.json({doctors});
+    } else {
+        res.json({msg: 'No tienes los permisos necesarios'});
+    }
+})
 
 
 // Validar autenticación

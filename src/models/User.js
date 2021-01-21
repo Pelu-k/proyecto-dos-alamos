@@ -53,6 +53,11 @@ const userSchema = new Schema({
         {
             type: String
         }
+    ],
+    hoursAttention: [
+        {
+            type: Date
+        }
     ]
 });
 
