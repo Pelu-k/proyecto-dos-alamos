@@ -7,7 +7,9 @@
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
 <% } else if (user.rol === 'Secretaria'){ %>
-    <h1 class="p-4 text-info">Perfil Secretaria</h1>
+    <h1 class="p-4 text-dark">Perfil Secretaria</h1>
+    <h1 style="color: grey;">Bienvenido/a <%= user.name %></h1>
+    <h1 class="text-left" style="padding-left:10%;" > Lista de Medicos</h1>
     <% console.log(user)  %>
         <div class="container">
             <table class="table table-hover table-dark ">
