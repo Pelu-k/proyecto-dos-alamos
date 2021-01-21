@@ -38,6 +38,11 @@ app.use((req, res, next) => {
 // Rutas
 app.use(require('./routes/entries.routes'));
 
+// Error 404
+app.use((req, res, next) => {
+    res.status(404).render('404');
+})
+
 app.listen(app.get('port'), () => {
     console.log(`Escuchando en: http://${appConfig.host}:${appConfig.port}`);
 });
