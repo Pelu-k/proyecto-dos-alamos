@@ -30,28 +30,28 @@
                     <td><%= i.name %></td>
                     <td> 9:00 a 18:00</td>
                     <td><a href="mailto:micorreo@gmail.com?" ><%= i.email %></a></td>
-                    <td> <input type="text" id="<%= i._id %>" value="Disponible" style="color: green;" disabled></td>
-                    <td><button class="btn btn-primary" id="btnModificar" onclick="btnMod()"> Modificar </button></td>
+                    <td> <input type="text" id="<%= i.name %>" value="Disponible" style="color: green;" disabled></td>
+                    <td><button class="btn btn-primary" id="btnModificar" onclick="btnMod(`<%= i.name %>`)    "> Modificar </button></td>
                 </tr>
-                <script>
-                    function btnMod () { 
-                        console.log('works')
-                        var disabled = document.getElementById("<%= i._id %>").disabled;
-                          if (disabled) {
-                        document.getElementById("<%= i._id %>").disabled = false;
-                        } else {
-                            document.getElementById("<%= i._id %>").disabled = true;
-                        }
-                
-                                 }
-                </script>
+
                 <% } %>
                 <%  }) %>
 
                 </tbody>
             </table>
         </div>
-
+        <script>
+            function btnMod (e) { 
+                console.log(e)
+                var disabled = document.getElementById(e).disabled;
+                  if (disabled) {
+                document.getElementById(e).disabled = false;
+                } else {
+                    document.getElementById(e).disabled = true;
+                }
+        
+                         }
+        </script>
 <% } else if (user.rol === 'Medico') { %>
     <h1>Perfil Médico</h1>
 <% } else { %>
