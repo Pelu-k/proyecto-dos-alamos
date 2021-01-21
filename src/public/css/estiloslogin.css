@@ -36,7 +36,7 @@ body {
     url(img/stethoscope.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 110vh;
 }
 
 .titulo {
@@ -47,13 +47,28 @@ body {
   width: 100%;
   padding: 15px;
 }
+.contenedor1 {
+  width: 100%;
+  padding: 65px 0px;
+  
+}
 
 .formulario {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 8px;
   margin-top: 10%;
   margin-left: 30%;
   margin-right: 30%;
+  
+}
+
+.formulariologin {
+  background-color: #ffffff;
+  padding: 60px 0px;
+  margin-top: 10%;
+  margin-left: 30%;
+  margin-right: 30%;
+  
 }
 
 h1 {
@@ -118,6 +133,7 @@ h1 {
 .titulosombras {
   color: white;
   text-shadow: 2px 2px 5px rgb(187, 187, 187);
+  font-size: 20px;
 
 
 }
@@ -135,19 +151,12 @@ h1 {
   font-size: 20px;
 }
 
- /*
-.contenedor1 {
-  margin-top: 200px;
-  margin-left: 400px;
-}
- */
-/**/
 
 .ul1 {
   list-style-type: none;
   background-color:#154aa0 ;
   color: white;
-  margin-top: 600px;
+  margin-top: 100px;
   padding: 50px 20px;
   bottom: 0;
 
@@ -158,4 +167,66 @@ h1 {
 
 .a2 {
   color: white;
+}
+
+.img1 {
+  display: block;
+}
+.container1 {
+  background-color: rgb(160, 170, 192);
+
+}
+.container1 h2 {
+  color: #154aa0 ;
+}
+
+.textocontainer {
+  padding: 30px 30px;
+  margin: 20px 300px;
+}
+
+.textocontainer  p{
+  font-size: 25px;
+  color: black;
+}
+
+.textocontainer h2 {
+  font-size: 40px;
+  text-align: center;
+}
+
+.textocontainer ul {
+  font-size: 25px;
+  color: black;
+  
+}
+
+.h1index {
+  padding: 30px 0px;
+  color: #04193a;
+  text-shadow: 2px 2px 5px rgb(90, 87, 87);
+  font-size: 50px;
+}
+
+.navbar {
+  padding: 20px 20px;
+}
+
+.container2 {
+  background-color: rgb(6, 155, 155);
+  padding: 40px 50px;
+  text-align: center;
+}
+
+.container2 h2 {
+  font-size: 40px;
+  color: #04193a;
+}
+
+.container2 p {
+  color: white;
+  font-size: 20px;
+  padding: 5px 250px;
+  text-align: center;
+ 
 }
