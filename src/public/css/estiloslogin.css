@@ -62,13 +62,11 @@ h1 {
   font-size: 40px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.input1 {
   font-size: 20px;
   width: 82%;
   padding: 10px;
-  border: 1px solid #aaa;
+  border: 1px solid #aaa; 
 }
 
 .input-contenedor {
@@ -115,4 +113,49 @@ input[type="password"] {
 
 .button:hover {
   color: gray;
+}
+
+.titulosombras {
+  color: white;
+  text-shadow: 2px 2px 5px rgb(187, 187, 187);
+
+
+}
+
+
+.titulosombras2 {
+  text-shadow: 2px 2px 5px rgb(187, 187, 187);
+  
+}
+
+.titulosombras3 {
+  color: white;
+  text-shadow: 2px 2px 5px rgb(187, 187, 187);
+  padding-right: 50px;
+  font-size: 20px;
+}
+
+ /*
+.contenedor1 {
+  margin-top: 200px;
+  margin-left: 400px;
+}
+ */
+/**/
+
+.ul1 {
+  list-style-type: none;
+  background-color:#154aa0 ;
+  color: white;
+  margin-top: 600px;
+  padding: 50px 20px;
+  bottom: 0;
+
+}
+.li1 {
+  display: inline;
+}
+
+.a2 {
+  color: white;
 }
