@@ -5,5 +5,3 @@ src/views/assing.ejs
 src/public/js/assing.js
 src/public/js/validateLogin.js
 src/public/js/validateRegister.js
-
-src/controllers/mail.controller.js
