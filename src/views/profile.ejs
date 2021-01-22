@@ -7,12 +7,32 @@
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
 <% } else if (user.rol === 'Secretaria'){ %>
-    <h1 class="p-4 text-dark">Perfil Secretaria</h1>
-    <h1 style="color: grey;">Bienvenido/a <%= user.name %></h1>
-    <h1 class="text-left" style="padding-left:10%;" > Lista de Medicos</h1>
+
     <% console.log(user)  %>
         <div class="container">
-            <table class="table table-hover table-dark ">
+            <h1 class="p-4 text-dark mb-4">Perfil Secretaria</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 style="color: grey;" class=" text-left">Bienvenido/a <%= user.name %></h1>
+                </div>
+                <div class="col-md-8">
+                    <div class="card ml-auto " style="width: 18rem;">
+                        <div class="card-body ">
+                          <h5 class="card-title"><%= user.name %></h5>
+                          <h6 class="card-subtitle mb-2 text-muted"><%= user.rol %></h6>
+                          <p class="card-text"> <%= user.email %></p>
+                        </div>
+                      </div>
+  
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class=" ml-4 text-success  text-left"  > Lista de Medicos</h1>
+            </div>
+            </div>
+            </div>
+       
+            <table class="table table-hover table-success  ">
                 <thead>
                 <tr>
                     <th scope="col">Medico</th>
@@ -32,7 +52,12 @@
                     <td><%= i.name %></td>
                     <td> 9:00 a 18:00</td>
                     <td><a href="mailto:micorreo@gmail.com?" ><%= i.email %></a></td>
-                    <td> <input type="text" id="<%= i.name %>" value="Disponible" style="color: green;" disabled></td>
+                    <td> 
+                        <select class="bg-success text-light" name="estado" id="<%= i.name %>" onchange="changeState(`<%= i.name %>`)"  disabled>
+                          <option id="disp"  value="disponible">Disponible</option>
+                          <option id="off"value="ausente">Ausente</option>
+                          <option id="busy" value="ocupado">Ocupado</option>
+                        </select></td>
                     <td><button class="btn btn-primary" id="btnModificar" onclick="btnMod(`<%= i.name %>`)    "> Modificar </button></td>
                 </tr>
 
@@ -43,16 +68,44 @@
             </table>
         </div>
         <script>
+            function changeState (e) {
+                var element = document.getElementById(e);
+                var btn = document.getElementById ('btnModificar');
+                
+                    if (element.value == "disponible") {
+                        element.setAttribute('class','bg-success text-light')
+
+                    }
+                    if (element.value == 'ausente') {
+                      
+                        element.setAttribute('class','bg-danger text-light')
+
+                    }
+                    else if (element.value == 'ocupado') {
+ 
+                        element.setAttribute('class','bg-warning text-light')
+
+                    }
+                    if (element.selected) {
+                        btn.innerHTML = "Guardar Cambios";
+                    }
+
+
+            }
             function btnMod (e) { 
                 console.log(e)
+                var btn = document.getElementById ('btnModificar');
                 var disabled = document.getElementById(e).disabled;
+                var element = document.getElementById(e);
                   if (disabled) {
                 document.getElementById(e).disabled = false;
                 } else {
                     document.getElementById(e).disabled = true;
+                    btn.innerHTML = 'Modificar'
                 }
         
-                         }
+                }
+   
         </script>
 <% } else if (user.rol === 'Medico') { %>
     <h1>Perfil Médico</h1>
@@ -60,10 +113,6 @@
     <h1>Perfil Administrador</h1>
 <% } %>
  
-<div>
-    <ul>
-        <li><%= user.name %></li>
-    </ul>
-</div>
+
 
 <%- include('./layouts/footer'); %> 
