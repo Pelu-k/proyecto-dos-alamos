@@ -7,12 +7,29 @@
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
 <% } else if (user.rol === 'Secretaria'){ %>
-    <h1 class="p-4 text-dark">Perfil Secretaria</h1>
-    <h1 style="color: grey;">Bienvenido/a <%= user.name %></h1>
-    <h1 class="text-left" style="padding-left:10%;" > Lista de Medicos</h1>
+
     <% console.log(user)  %>
         <div class="container">
-            <table class="table table-hover table-dark ">
+            <h1 class="p-4 text-dark">Perfil Secretaria</h1>
+            <h1 style="color: grey;" class="mb-4">Bienvenido/a <%= user.name %></h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ml-auto " style="width: 18rem;">
+                        <div class="card-body ">
+                          <h5 class="card-title"><%= user.name %></h5>
+                          <h6 class="card-subtitle mb-2 text-muted"><%= user.rol %></h6>
+                          <p class="card-text"> <%= user.email %></p>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <h1 class="text-left"  > Lista de Medicos</h1>
+
+                      </div>
+            </div>
+
+            </div>
+       
+            <table class="table table-hover table-dark  ">
                 <thead>
                 <tr>
                     <th scope="col">Medico</th>
@@ -32,7 +49,14 @@
                     <td><%= i.name %></td>
                     <td> 9:00 a 18:00</td>
                     <td><a href="mailto:micorreo@gmail.com?" ><%= i.email %></a></td>
-                    <td> <input type="text" id="<%= i.name %>" value="Disponible" style="color: green;" disabled></td>
+                    <td> 
+
+                        <select name="estado" id="estado">
+                          <option value="disponible">Disponible</option>
+                          <option value="ausente">Ausente</option>
+                          <option value="ocupado">Ocupado</option>
+                          
+                        </select></td>
                     <td><button class="btn btn-primary" id="btnModificar" onclick="btnMod(`<%= i.name %>`)    "> Modificar </button></td>
                 </tr>
 
