@@ -58,7 +58,11 @@ const userSchema = new Schema({
         {
             type: Date
         }
-    ]
+    ],
+    availability: {
+        type: String,
+        default: 'Disponible'
+    }
 });
 
 module.exports = model('User', userSchema);
