@@ -1,0 +1,25 @@
+<%- include('./layouts/header', {title: 'La pagina no existe - Centro medico Dos Alamos'}); %> 
+
+<!--Pagina para enviar correo MEJORAR PLEASE-->
+
+<div>
+    <form method="POST">
+        <div>
+            <label>Nombre:</label>
+            <input type="text" value="<%= userTo.name %>">  
+        </div>
+        <div>
+            <label>Correo:</label>
+            <input type="email" name="email" id="email" value="<%= userTo.email %>">
+        </div>
+        <div>
+            <label>Mensaje</label>
+            <textarea name="msg" id="msg" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+</div>
+
+<%- include('./layouts/footer'); %> 

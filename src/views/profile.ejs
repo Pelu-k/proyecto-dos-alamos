@@ -2,7 +2,7 @@
 
 <% if (successRegister != '') { %>
     <p><%= successRegister %> </p>
-<% } %>
+<% } %> 
 
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
@@ -51,7 +51,7 @@
                 <tr>
                     <td><%= i.name %></td>
                     <td> 9:00 a 18:00</td>
-                    <td><a href="mailto:micorreo@gmail.com?" ><%= i.email %></a></td>
+                    <td><a href="/user/send/<%= i._id %> " ><%= i.email %></a></td>
                     <td> 
                         <select class="bg-success text-light" name="estado" id="<%= i.name %>" onchange="changeState(`<%= i.name %>`)"  disabled>
                           <option id="disp"  value="disponible">Disponible</option>
