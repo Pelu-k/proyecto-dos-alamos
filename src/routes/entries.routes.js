@@ -65,8 +65,8 @@ router.get('/doctors', isAuthenticated, async (req, res, next) => {
     }
 })
 
-router.put('/availability/:id', /*isAuthenticated,*/ async (req, res, next) => {
-    //if (req.user.rol === 'Secretaria') {
+router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
+    if (req.user.rol === 'Secretaria') {
         // Cambiar disponibilidad
         let doctor = await User.findByIdAndUpdate({
             _id: req.params.id
@@ -78,7 +78,7 @@ router.put('/availability/:id', /*isAuthenticated,*/ async (req, res, next) => {
         });
         res.json({doctor});
         //res.redirect('/user/assing');
-    //}
+    }
 })
 
 
