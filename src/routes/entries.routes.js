@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const passport = require('passport');
 require('../controllers/auth.controller');
+const nodemailer = require('nodemailer');
+const { mailConfig } = require('../config');
 
 const User = require('../models/User');
 
@@ -47,6 +49,7 @@ router.get('/user/profile', isAuthenticated, async (req, res, next) => {
     res.render('profile', {users});
 });
 
+//#region Borrar
 router.get('/user/assing', isAuthenticated, async (req, res, next) => {
     res.render('assing');
 });
@@ -54,6 +57,7 @@ router.get('/user/assing', isAuthenticated, async (req, res, next) => {
 router.post('/user/assing', isAuthenticated, async (req, res, next) => {
     
 })
+//#endregion
 
 // ruta para consultar por todos los doctores para uso de AJAX
 router.get('/doctors', isAuthenticated, async (req, res, next) => {
@@ -63,11 +67,11 @@ router.get('/doctors', isAuthenticated, async (req, res, next) => {
     } else {
         res.redirect('404');
     }
-})
+});
 
+// Cambiar la disponibilidad del medico
 router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
     if (req.user.rol === 'Secretaria') {
-        // Cambiar disponibilidad
         let doctor = await User.findByIdAndUpdate({
             _id: req.params.id
         },
@@ -76,10 +80,49 @@ router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
                 availability: req.body.docAvailability
             }
         });
-        res.json({doctor});
-        //res.redirect('/user/assing');
+        res.redirect('/user/profile');
     }
-})
+});
+
+router.get('/user/send/:id', isAuthenticated, async (req, res, next) => {
+    const userTo = await User.findOne({_id: req.params.id});
+    res.render('send', {userTo});
+});
+
+// Enviar correo
+router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.office365.com',
+        secure: false,
+        port: 587,
+        tls: {
+            ciphers: 'SSLv3'
+        },
+        auth: {
+            user: mailConfig.user,
+            pass: mailConfig.pass
+        }
+    })
+
+    const mensaje = req.body.msg;
+
+    const mailOptions = {
+        from: `"${req.user.name}" <${mailConfig.user}>`,
+        to: req.body.email,
+        subject: 'Contacto',
+        text: mensaje
+    }
+
+    await transporter.sendMail(mailOptions, function(error, info) {
+        if(error){
+            //console.log(error)
+            res.redirect('/user/profile')
+        } else {
+            //console.log('mensaje enviado ' + info.response)
+            res.redirect('/user/profile')
+        }
+    })
+});
 
 
 // Validar autenticación

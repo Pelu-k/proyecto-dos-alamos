@@ -10,5 +10,9 @@ module.exports = {
         user: process.env.DBUSER,
         pass: process.env.DBPASS,
         name: process.env.DBNAME,
+    },
+    mailConfig: {
+        user: process.env.MUSER,
+        pass: process.env.MPASS
     }
 };

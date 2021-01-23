@@ -2,7 +2,7 @@
 
 <% if (successRegister != '') { %>
     <p><%= successRegister %> </p>
-<% } %>
+<% } %> 
 
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
@@ -48,17 +48,17 @@
                 <% users.forEach(i => { %>
 
                 <% if (i.rol == "Doctor") { %>
-                <tr onload="changeState(this,`<%= i.name %>`)">
+                <tr>
                     <td><%= i.name %></td>
-                    <td><%= i.hoursAttention %></td>
-                    <td><a href="mailto:micorreo@gmail.com?" ><%= i.email %></a></td>
+                    <td> 9:00 a 18:00</td>
+                    <td><a href="/user/send/<%= i._id %> " ><%= i.email %></a></td>
                     <td> 
-                        <select class="bg-success text-light" style="width: 100%;" name="estado" id="<%= i.name %>" onchange="changeState(this,`<%= i.name %>`)"  disabled>
-                          <option id="disp"  value="`<%= i.availability %>`"><%= i.availability %></option>
+                        <select class="bg-info text-light" style="width: 100%;" name="estado" id="<%= i.name %>" onchange="changeState(this,`<%= i.name %>`,`<%= i.run %>`)"  disabled>
+                          <option id="disp" style="display: none;"  value="`<%= i.availability %>`"><%= i.availability %></option>
                           <option id="disponible"  value="disponible">Disponible</option>
                           <option id="off"value="ausente">No disponible</option>
                         </select></td>
-                    <td><button class="btn btn-primary" id="btnModificar" onclick="btnMod(`<%= i.name %>`)    "> Modificar </button></td>
+                    <td><button class="btn btn-primary" id="<%= i.run %>" onclick="btnMod(`<%= i.name %>`,`<%= i.run %>`)"> Modificar </button></td>
                 </tr>
 
                 <% } %>
@@ -68,22 +68,19 @@
             </table>
         </div>
         <script>
-            function changeState (index,e) {
+            function changeState (index,e,button) {
                 var element = document.getElementById(e);
-                var btn = document.getElementById ('btnModificar');
-                    
+                var btn = document.getElementById(button);
                     if (index.options[index.selectedIndex].text == "Disponible") {
                         element.setAttribute('class','bg-success text-light')
+                        btn.innerHTML = 'Guardar'
 
                     }
-                    if (element.value == 'No disponible') {
-                      
-                      element.setAttribute('class','bg-danger text-light')
-
-                  }
                     if (index.options[index.selectedIndex].text  == 'No disponible') {
                       
                         element.setAttribute('class','bg-danger text-light')
+                        btn.innerHTML = 'Guardar'
+
 
                     }
                     if (element.selected) {
@@ -92,9 +89,9 @@
 
 
             }
-            function btnMod (e) { 
+            function btnMod (e,button) { 
                 console.log(e)
-                var btn = document.getElementById ('btnModificar');
+                var btn = document.getElementById (button);
                 var disabled = document.getElementById(e).disabled;
                 var element = document.getElementById(e);
                   if (disabled) {
@@ -103,8 +100,10 @@
                     document.getElementById(e).disabled = true;
                     btn.innerHTML = 'Modificar'
                 }
-        
-                }
+                
+          
+
+            }
    
         </script>
 <% } else if (user.rol === 'Medico') { %>
