@@ -49,16 +49,6 @@ router.get('/user/profile', isAuthenticated, async (req, res, next) => {
     res.render('profile', {users});
 });
 
-//#region Borrar
-router.get('/user/assing', isAuthenticated, async (req, res, next) => {
-    res.render('assing');
-});
-
-router.post('/user/assing', isAuthenticated, async (req, res, next) => {
-    
-})
-//#endregion
-
 // ruta para consultar por todos los doctores para uso de AJAX
 router.get('/doctors', isAuthenticated, async (req, res, next) => {
     if (req.user.rol === 'Secretaria') {
