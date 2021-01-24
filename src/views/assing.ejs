@@ -1,0 +1,21 @@
+<%- include('./layouts/header', {title: 'Asignar horarios de atención - Centro medico Dos Alamos'}); %> 
+
+<% if (messageError != '') { %>
+    <p class="alert alert-danger text-center"><%= messageError %> </p>
+<% } %>
+
+<div>
+    <form action="" method="post">
+        <div>
+            <label>Nombre:</label>
+            <label><%= userAssing.name %> </label>
+        </div>
+        <div>
+            <label>Agregar dia y hora de atención</label>
+            <input type="datetime-local" name="hoursAttention" id="hoursAttention">
+        </div>
+        <input type="submit" value="Agregar">
+    </form>
+</div>
+
+<%- include('./layouts/footer'); %> 

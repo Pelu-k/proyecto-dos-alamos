@@ -1,8 +1,16 @@
 <%- include('./layouts/header', {title: 'Perfil - Centro medico Dos Alamos'}); %> 
 
 <% if (successRegister != '') { %>
-    <p><%= successRegister %> </p>
+    <p class="alert alert-success text-center"><%= successRegister %> </p>
 <% } %> 
+
+<% if (messageSuccess != '') { %>
+    <p class="alert alert-success text-center"><%= messageSuccess %> </p>
+<% } %>
+
+<% if (messageError != '') { %>
+    <p class="alert alert-danger text-center"><%= messageError %> </p>
+<% } %>
 
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
@@ -58,7 +66,10 @@
                           <option id="disponible"  value="disponible">Disponible</option>
                           <option id="off"value="ausente">No disponible</option>
                         </select></td>
-                    <td><button class="btn btn-primary" id="<%= i.run %>" onclick="btnMod(`<%= i.name %>`,`<%= i.run %>`)"> Modificar </button></td>
+                    <td>
+                        <button class="btn btn-primary" id="<%= i.run %>" onclick="btnMod(`<%= i.name %>`,`<%= i.run %>`)"> Modificar </button>
+                        <a class="btn btn-primary" href="/user/assing/<%= i._id %> ">Agregar Horario</a>
+                    </td>
                 </tr>
 
                 <% } %>

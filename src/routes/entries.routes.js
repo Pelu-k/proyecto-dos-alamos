@@ -70,6 +70,7 @@ router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
                 availability: req.body.docAvailability
             }
         });
+        req.flash('messageSuccess', 'Disponibilidad actualizada');
         res.redirect('/user/profile');
     }
 });
@@ -106,13 +107,50 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
     await transporter.sendMail(mailOptions, function(error, info) {
         if(error){
             //console.log(error)
+            req.flash('messageError', 'Error al enviar')
             res.redirect('/user/profile')
         } else {
             //console.log('mensaje enviado ' + info.response)
+            req.flash('messageSuccess', 'Mensaje enviado con exito')
             res.redirect('/user/profile')
         }
     })
 });
+
+// Gregar dia de atención
+router.get('/user/assing/:id', isAuthenticated, async (req, res, next) => {
+    const userAssing = await User.findOne({_id: req.params.id});
+    res.render('assing', {userAssing});
+});
+
+router.post('/user/assing/:id', isAuthenticated, async (req, res, next) => {
+    if (req.user.rol === 'Secretaria') {
+        try {
+            const dateNow = Date.now;
+            if (req.body.hoursAttention > dateNow) {
+                req.flash('messageError', 'La fecha asignada no puede ser anterior a la fecha actual');
+                res.redirect('/user/assing/' + req.params.id);
+            } else {
+                const userUpdate = await User.findByIdAndUpdate({
+                    _id: req.params.id
+                },
+                {
+                    $addToSet: {
+                        hoursAttention: req.body.hoursAttention
+                    }
+                });
+                req.flash('messageSuccess', 'Horario de atención actualizado');
+                res.redirect('/user/profile'); 
+            }   
+        } catch (error) {
+            req.flash('messageError', 'Error: ' + error);
+            res.redirect('/user/profile');
+        }
+    } else {
+        req.flash('messageError', 'No tienes los permisos necesarios');
+        res.redirect('/user/profile');
+    }
+})
 
 
 // Validar autenticación

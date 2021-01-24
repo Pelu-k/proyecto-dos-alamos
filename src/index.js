@@ -31,6 +31,8 @@ app.use((req, res, next) => {
     app.locals.errorLogin = req.flash('errorLogin');
     app.locals.errorRegister = req.flash('errorRegister');
     app.locals.successRegister = req.flash('successRegister');
+    app.locals.messageSuccess = req.flash('messageSuccess');
+    app.locals.messageError = req.flash('messageError');
     app.locals.user = req.user;
     next();
 })
