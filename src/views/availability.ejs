@@ -1,0 +1,21 @@
+<%- include('./layouts/header', {title: 'Disponibilidad - Centro medico Dos Alamos'}); %> 
+
+<div class="container formricardo">
+    <form method="post">
+        <h2>Disponibilidad</h2>
+        <div>
+            <label>Nombre: <%= userAvailability.name %> </label>
+        </div>
+        <div>
+            <select name="state" id="state">
+                <option value="Disponible">Disponible</option>
+                <option value="No disponible">No disponible</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+</div>
+
+<%- include('./layouts/footer'); %> 

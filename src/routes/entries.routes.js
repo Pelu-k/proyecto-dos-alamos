@@ -60,7 +60,12 @@ router.get('/doctors', isAuthenticated, async (req, res, next) => {
 });
 
 // Cambiar la disponibilidad del medico
-router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
+router.get('/user/availability/:id', isAuthenticated, async (req, res, next) => {
+    const userAvailability = await User.findOne({_id: req.params.id});
+    res.render('availability', {userAvailability});
+})
+
+router.post('/user/availability/:id', isAuthenticated, async (req, res, next) => {
     if (req.user.rol === 'Secretaria') {
         try {
             let doctor = await User.findByIdAndUpdate({
@@ -68,7 +73,7 @@ router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
             },
             {
                 $set: {
-                    availability: req.body.docAvailability
+                    availability: req.body.state
                 }
             });
             req.flash('messageSuccess', 'Disponibilidad actualizada');
@@ -111,11 +116,11 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
 
     await transporter.sendMail(mailOptions, function(error, info) {
         if(error){
-            //console.log(error)
-            req.flash('messageError', 'Error al enviar')
+            console.log(error)
+            req.flash('messageError', 'Error al enviar. ' + error)
             res.redirect('/user/profile')
         } else {
-            //console.log('mensaje enviado ' + info.response)
+            console.log('mensaje enviado ' + info.response)
             req.flash('messageSuccess', 'Mensaje enviado con exito')
             res.redirect('/user/profile')
         }
