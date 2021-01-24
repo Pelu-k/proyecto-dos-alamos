@@ -62,16 +62,21 @@ router.get('/doctors', isAuthenticated, async (req, res, next) => {
 // Cambiar la disponibilidad del medico
 router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
     if (req.user.rol === 'Secretaria') {
-        let doctor = await User.findByIdAndUpdate({
-            _id: req.params.id
-        },
-        {
-            $set: {
-                availability: req.body.docAvailability
-            }
-        });
-        req.flash('messageSuccess', 'Disponibilidad actualizada');
-        res.redirect('/user/profile');
+        try {
+            let doctor = await User.findByIdAndUpdate({
+                _id: req.params.id
+            },
+            {
+                $set: {
+                    availability: req.body.docAvailability
+                }
+            });
+            req.flash('messageSuccess', 'Disponibilidad actualizada');
+            res.redirect('/user/profile');
+        } catch (error) {
+            req.flash('messageError', 'Error al actualizar la disponibilidad');
+            res.redirect('/user/profile');
+        }
     }
 });
 
@@ -93,7 +98,7 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
             user: mailConfig.user,
             pass: mailConfig.pass
         }
-    })
+    });
 
     const mensaje = req.body.msg;
 
@@ -114,7 +119,7 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
             req.flash('messageSuccess', 'Mensaje enviado con exito')
             res.redirect('/user/profile')
         }
-    })
+    });
 });
 
 // Agregar dia de atención
@@ -152,7 +157,7 @@ router.post('/user/assing/:id', isAuthenticated, async (req, res, next) => {
         req.flash('messageError', 'No tienes los permisos necesarios');
         res.redirect('/user/profile');
     }
-})
+});
 
 
 // Validar autenticación
