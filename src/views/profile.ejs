@@ -38,7 +38,6 @@
                                 </p>
                             </div>
                         </div>
-        
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -60,73 +59,30 @@
                 </thead>
 
                 <tbody >
-                <% %>
-                <% users.forEach(i => { %>
-
-                <% if (i.rol == "Doctor") { %>
-                <tr>
-                    <td><%= i.name %></td>
-                    <td> 9:00 a 18:00</td>
-                    <td><a href="/user/send/<%= i._id %> " ><%= i.email %></a></td>
-                    <td> 
-                        <select class="bg-info text-light" style="width: 100%;" name="estado" id="<%= i.name %>" onchange="changeState(this,`<%= i.name %>`,`<%= i.run %>`)"  disabled>
-                          <option id="disp" style="display: none;"  value="`<%= i.availability %>`"><%= i.availability %></option>
-                          <option id="disponible"  value="disponible">Disponible</option>
-                          <option id="off"value="ausente">No disponible</option>
-                        </select></td>
-                    <td>
-                        <button class="btn btn-primary" id="<%= i.run %>" onclick="btnMod(`<%= i.name %>`,`<%= i.run %>`)"> Modificar </button>
-                        <a class="btn btn-primary" href="/user/assing/<%= i._id %> ">Agregar Horario</a>
-                        <a href="/user/availability/<%= i._id %> "><i class="fas fa-edit"></i></a>
-                    </td>
-                </tr>
-
-                <% } %>
-                <%  }) %>
-
+                    <% %>
+                    <% users.forEach(i => { %>
+                        <% if (i.rol == "Doctor") { %>
+                            <tr>
+                                <td><%= i.name %></td>
+                                <td> 9:00 a 18:00</td>
+                                <td><a href="/user/send/<%= i._id %> " ><%= i.email %></a></td>
+                                <td> 
+                                    <% if (i.availability === 'Disponible') { %>
+                                        <p class="text-success"><%= i.availability %></p>
+                                    <% } else { %>
+                                        <p class="text-danger"><%= i.availability %></p>
+                                    <% } %>
+                                <td>
+                                    <!-- <button class="btn btn-primary" id="<%= i.run %>" onclick="btnMod(`<%= i.name %>`,`<%= i.run %>`)"> Modificar </button> -->
+                                    <a class="btn btn-primary" href="/user/assing/<%= i._id %> ">Agregar Horario</a>
+                                    <a class="btn btn-primary" href="/user/availability/<%= i._id %> ">Modificar Estado <i class="fas fa-edit"></i></a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <%  }) %>
                 </tbody>
             </table>
-
         </div>
-        <script>
-            function changeState (index,e,button) {
-                var element = document.getElementById(e);
-                var btn = document.getElementById(button);
-                    if (index.options[index.selectedIndex].text == "Disponible") {
-                       // element.setAttribute('class','bg-success text-light')
-                        btn.innerHTML = 'Guardar'
-
-                    }
-                    if (index.options[index.selectedIndex].text  == 'No disponible') {
-                      
-                        //element.setAttribute('class','bg-danger text-light')
-                        btn.innerHTML = 'Guardar'
-
-
-                    }
-                    if (element.selected) {
-                        btn.innerHTML = "Guardar Cambios";
-                    }
-
-
-            }
-            function btnMod (e,button) { 
-                console.log(e)
-                var btn = document.getElementById (button);
-                var disabled = document.getElementById(e).disabled;
-                var element = document.getElementById(e);
-                  if (disabled) {
-                document.getElementById(e).disabled = false;
-                } else {
-                    document.getElementById(e).disabled = true;
-                    btn.innerHTML = 'Modificar'
-                }
-                
-          
-
-            }
-   
-        </script>
 <% } else if (user.rol === 'Medico') { %>
     <h1>Perfil Médico</h1>
 <% } else { %>
