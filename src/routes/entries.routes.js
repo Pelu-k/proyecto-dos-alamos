@@ -49,14 +49,6 @@ router.get('/user/profile', isAuthenticated, async (req, res, next) => {
     res.render('profile', {users});
 });
 
-router.get('/user/assing', isAuthenticated, async (req, res, next) => {
-    res.render('assing');
-});
-
-router.post('/user/assing', isAuthenticated, async (req, res, next) => {
-    
-})
-
 // ruta para consultar por todos los doctores para uso de AJAX
 router.get('/doctors', isAuthenticated, async (req, res, next) => {
     if (req.user.rol === 'Secretaria') {
@@ -65,7 +57,7 @@ router.get('/doctors', isAuthenticated, async (req, res, next) => {
     } else {
         res.redirect('404');
     }
-})
+});
 
 // Cambiar la disponibilidad del medico
 router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
@@ -78,14 +70,16 @@ router.put('/availability/:id', isAuthenticated, async (req, res, next) => {
                 availability: req.body.docAvailability
             }
         });
+        req.flash('messageSuccess', 'Disponibilidad actualizada');
         res.redirect('/user/profile');
     }
-})
+});
 
 router.get('/user/send/:id', isAuthenticated, async (req, res, next) => {
     const userTo = await User.findOne({_id: req.params.id});
     res.render('send', {userTo});
-})
+});
+
 // Enviar correo
 router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
     const transporter = nodemailer.createTransport({
@@ -104,7 +98,7 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
     const mensaje = req.body.msg;
 
     const mailOptions = {
-        from: `"Juanita Arcoiris" <${mailConfig.user}>`,
+        from: `"${req.user.name}" <${mailConfig.user}>`,
         to: req.body.email,
         subject: 'Contacto',
         text: mensaje
@@ -113,13 +107,52 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
     await transporter.sendMail(mailOptions, function(error, info) {
         if(error){
             //console.log(error)
-            res.redirect('/user/profile', {error})
+            req.flash('messageError', 'Error al enviar')
+            res.redirect('/user/profile')
         } else {
             //console.log('mensaje enviado ' + info.response)
-            res.redirect('/user/profile', {data: 'Mensaje enviado: ' + info.response})
+            req.flash('messageSuccess', 'Mensaje enviado con exito')
+            res.redirect('/user/profile')
         }
     })
 });
+
+// Agregar dia de atención
+router.get('/user/assing/:id', isAuthenticated, async (req, res, next) => {
+    const userAssing = await User.findOne({_id: req.params.id});
+    res.render('assing', {userAssing});
+});
+
+router.post('/user/assing/:id', isAuthenticated, async (req, res, next) => {
+    if (req.user.rol === 'Secretaria') {
+        const dateNow = new Date;
+        const dateSelected = new Date;
+        dateSelected.setTime(Date.parse(req.body.hoursAttention));
+        try {
+            if (dateSelected < dateNow) {
+                req.flash('messageError', 'La fecha asignada no puede ser igual o anterior a la fecha actual');
+                res.redirect('/user/assing/' + req.params.id);
+            } else {
+                const userUpdate = await User.findByIdAndUpdate({
+                    _id: req.params.id
+                },
+                {
+                    $addToSet: {
+                        hoursAttention: dateSelected
+                    }
+                });
+                req.flash('messageSuccess', 'Horario de atención actualizado');
+                res.redirect('/user/profile'); 
+            }   
+        } catch (error) {
+            req.flash('messageError', 'Error: ' + error);
+            res.redirect('/user/profile');
+        }
+    } else {
+        req.flash('messageError', 'No tienes los permisos necesarios');
+        res.redirect('/user/profile');
+    }
+})
 
 
 // Validar autenticación

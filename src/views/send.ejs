@@ -1,7 +1,8 @@
-<%- include('./layouts/header', {title: 'La pagina no existe - Centro medico Dos Alamos'}); %> 
+<%- include('./layouts/header', {title: 'Contacto - Centro medico Dos Alamos'}); %> 
 
 <!--Pagina para enviar correo MEJORAR PLEASE-->
 
+<<<<<<< HEAD
 <div >
     <form method="POST">
         <div>
@@ -20,6 +21,30 @@
             <input type="submit" value="Enviar">
         </div>
     </form>
+=======
+<div class="row m-2">
+    <div class="col-md-6">
+        <h1 class="text-dark">Contacto</h1>
+        <form method="POST" class="bg-light p-2 rounded">
+            <div class="form-group">
+                <label class="form-text text-dark">Nombre:</label>
+                <input class="form-control" type="text" value="<%= userTo.name %>">  
+            </div>
+            <div class="form-group">
+                <label class="form-text text-dark">Correo:</label>
+                <input class="form-control" type="email" name="email" id="email" value="<%= userTo.email %>">
+            </div>
+            <div class="form-group">
+                <label class="form-text text-dark">Mensaje</label>
+                <textarea class="form-control" name="msg" id="msg" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="submit" value="Enviar">
+            </div>
+        </form>
+    </div>
+
+>>>>>>> ea121a5fcbb27fde4114c01ce78c23ede83824c8
 </div>
 
 <%- include('./layouts/footer'); %> 
