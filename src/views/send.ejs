@@ -2,19 +2,19 @@
 
 <!--Pagina para enviar correo MEJORAR PLEASE-->
 
-<div>
+<div >
     <form method="POST">
         <div>
             <label>Nombre:</label>
-            <input type="text" value="<%= userTo.name %>">  
+            <input type="text" value="<%= userTo.name %>" disabled>   
         </div>
         <div>
             <label>Correo:</label>
-            <input type="email" name="email" id="email" value="<%= userTo.email %>">
+            <input type="email" name="email" id="email" value="<%= userTo.email %>" disabled>
         </div>
         <div>
             <label>Mensaje</label>
-            <textarea name="msg" id="msg" cols="30" rows="10"></textarea>
+            <textarea name="msg" id="msg" cols="20" rows="3"></textarea>
         </div>
         <div>
             <input type="submit" value="Enviar">
