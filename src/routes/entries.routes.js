@@ -98,7 +98,7 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
             user: mailConfig.user,
             pass: mailConfig.pass
         }
-    })
+    });
 
     const mensaje = req.body.msg;
 
@@ -119,7 +119,7 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
             req.flash('messageSuccess', 'Mensaje enviado con exito')
             res.redirect('/user/profile')
         }
-    })
+    });
 });
 
 // Agregar dia de atención
@@ -157,7 +157,7 @@ router.post('/user/assing/:id', isAuthenticated, async (req, res, next) => {
         req.flash('messageError', 'No tienes los permisos necesarios');
         res.redirect('/user/profile');
     }
-})
+});
 
 
 // Validar autenticación
