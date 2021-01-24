@@ -117,7 +117,7 @@ router.post('/user/send/:id', isAuthenticated, async (req, res, next) => {
     })
 });
 
-// Gregar dia de atención
+// Agregar dia de atención
 router.get('/user/assing/:id', isAuthenticated, async (req, res, next) => {
     const userAssing = await User.findOne({_id: req.params.id});
     res.render('assing', {userAssing});
@@ -125,10 +125,12 @@ router.get('/user/assing/:id', isAuthenticated, async (req, res, next) => {
 
 router.post('/user/assing/:id', isAuthenticated, async (req, res, next) => {
     if (req.user.rol === 'Secretaria') {
+        const dateNow = new Date;
+        const dateSelected = new Date;
+        dateSelected.setTime(Date.parse(req.body.hoursAttention));
         try {
-            const dateNow = Date.now;
-            if (req.body.hoursAttention > dateNow) {
-                req.flash('messageError', 'La fecha asignada no puede ser anterior a la fecha actual');
+            if (dateSelected < dateNow) {
+                req.flash('messageError', 'La fecha asignada no puede ser igual o anterior a la fecha actual');
                 res.redirect('/user/assing/' + req.params.id);
             } else {
                 const userUpdate = await User.findByIdAndUpdate({
@@ -136,7 +138,7 @@ router.post('/user/assing/:id', isAuthenticated, async (req, res, next) => {
                 },
                 {
                     $addToSet: {
-                        hoursAttention: req.body.hoursAttention
+                        hoursAttention: dateSelected
                     }
                 });
                 req.flash('messageSuccess', 'Horario de atención actualizado');
