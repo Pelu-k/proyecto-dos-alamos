@@ -3,21 +3,21 @@
 <!--Pagina para enviar correo MEJORAR PLEASE-->
 
 <div >
-    <form method="POST">
+    <form method="POST" class="formuliarioricardo">
         <div>
-            <label>Nombre:</label>
-            <input type="text" value="<%= userTo.name %>" disabled>   
+            <label class="labelricardo">Nombre:</label>
+            <input class="inputricardo" type="text" value="<%= userTo.name %>" disabled>   
         </div>
         <div>
-            <label>Correo:</label>
-            <input type="email" name="email" id="email" value="<%= userTo.email %>" disabled>
+            <label class="labelricardo">Correo:</label>
+            <input class="inputricardo" type="email" name="email" id="email" value="<%= userTo.email %>" disabled>
         </div>
         <div>
-            <label>Mensaje</label>
-            <textarea name="msg" id="msg" cols="20" rows="3"></textarea>
+            <label class="labelricardo">Mensaje</label>
+            <textarea class="textarearicardo" name="msg" id="msg" cols="20" rows="3"></textarea>
         </div>
         <div>
-            <input type="submit" value="Enviar">
+            <input class="inputricardo" type="submit" value="Enviar">
         </div>
     </form>
 </div>

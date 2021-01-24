@@ -17,28 +17,36 @@
 <% } else if (user.rol === 'Secretaria'){ %>
 
     <% console.log(user)  %>
-        <div class="container" >
-            <h1 class="p-4 text-dark mb-4">Perfil Secretaria</h1>
-            <div class="row">
-                <div class="col-md-4">
-                    <h1 style="color: grey;" class=" text-left">Bienvenido/a <%= user.name %></h1>
-                </div>
-                <div class="col-md-8">
-                    <div class="card ml-auto " style="width: 18rem;">
-                        <div class="card-body ">
-                          <h5 class="card-title"><%= user.name %></h5>
-                          <h6 class="card-subtitle mb-2 text-muted"><%= user.rol %></h6>
-                          <p class="card-text"> <%= user.email %></p>
+        <div class="container">
+            <section class="py-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h1 style="color: rgb(41, 40, 40);" class=" text-left">Bienvenido/a <%= user.name %>
+                        </h1>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card ml-auto " style="width: 18rem;">
+                            <div class="card-body ">
+                                <h5 class="card-title">
+                                    <%= user.name %>
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    <%= user.rol %>
+                                </h6>
+                                <p class="card-text">
+                                    <%= user.email %>
+                                </p>
+                            </div>
                         </div>
-                      </div>
-  
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class=" ml-4 text-success  text-left"  > Lista de Medicos</h1>
-            </div>
-            </div>
-            </div>
+        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class=" ml-4 text-success  text-left"> Lista de Medicos</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
        
             <table class="table table-hover table-success  ">
                 <thead>

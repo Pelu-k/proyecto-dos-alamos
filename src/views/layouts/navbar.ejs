@@ -1,5 +1,6 @@
-<div>
+<div class="w-100">
     <nav  class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="/css/img/logo.jpg" class="img-fluid rounded-circle avatar mr-2">
         <a class="titulosombras3" class="navbar-brand" href="/">Centro Medico Dos Alamos</a>
         <button
         class="navbar-toggler"
@@ -26,11 +27,21 @@
             <% } else { %>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-3">
-                        <a class="titulosombras nav-link" href="/user/profile">Perfil</a>
+                        <a class="titulosombras nav-link" href="/user/profile">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="titulosombras nav-link" href="/user/logout">Cerrar sesión</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false"> 
+                            <img src="/css/img/user-1.jpg" class="img-fluid rounded-circle avatar mr-2">
+                          <%= user.name %>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/user/profile">Mi Perfil</a>
+                          <a class="dropdown-item" href="#">Configuración</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="/user/logout">Cerrar Sesión</a>
+                        </div>
+                      </li>
                 </ul>
             <% } %>
         </div>

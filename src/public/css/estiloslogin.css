@@ -175,11 +175,11 @@ h1 {
   color: white;
 }
 
-
-
 .img1 {
   display: block;
 }
+
+
 .container1 {
   background-color: rgb(160, 170, 192);
 
@@ -239,15 +239,15 @@ h1 {
  
 }
 
-label{
+.labelricardo{
   color: black;
   text-align: center;
   margin: 0;
   font-size: 20px;
   margin-bottom: 20px;
 }
-
-form{
+  
+.formuliarioricardo{
   width: 450px;
   margin: auto;
   background: rgba(255, 255, 255, 0.7);
@@ -257,9 +257,20 @@ form{
   border-radius: 7px;
 }
 
-input, textarea{
+.textarearicardo{
   width: 100%;
   margin-bottom: 20px;
   padding: 7px;
   box-sizing: border-box;
+}
+
+.inputricardo{
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 7px;
+  box-sizing: border-box;
+}
+
+.avatar{
+  max-width: 25px;
 }
