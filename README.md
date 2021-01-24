@@ -33,13 +33,17 @@ En forma adicional, el mecanismo de asignación de horas ocupa mucho tiempo admi
 ## Dependencias
 
 * express
+* express-session
 * bcrypt
 * @hapi/joi
 * dotenv
-* jsonwebtoken
+* passport
+* passport-local
 * mongoose
 * body-parser
 * ejs
+* nodemailer
+* connect-flash
 
 ## Dependencias de desarrollo
 
