@@ -15,83 +15,80 @@
 <% if (user.rol === 'Paciente') { %>
     <h1>Perfil Paciente</h1>
 <% } else if (user.rol === 'Secretaria'){ %>
-
-    <% console.log(user)  %>
-        <div class="container formricardo" >
-            <section class="py-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h1 style="color: rgb(41, 40, 40);" class=" text-left">Bienvenido/a <%= user.name %>
-                        </h1>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card ml-auto " style="width: 18rem;">
-                            <div class="card-body ">
-                                <h5 class="card-title">
-                                    <%= user.name %>
-                                </h5>
-                                <h6 class="card-subtitle mb-2 text-muted">
-                                    <%= user.rol %>
-                                </h6>
-                                <p class="card-text">
-                                    <%= user.email %>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class=" ml-4  text-left"> Lista de Medicos</h1>
+    <div class="container formricardo" >
+        <section class="py-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 style="color: rgb(41, 40, 40);" class=" text-left">Bienvenido/a <%= user.name %>
+                    </h1>
+                </div>
+                <div class="col-md-8">
+                    <div class="card ml-auto " style="width: 18rem;">
+                        <div class="card-body ">
+                            <h5 class="card-title">
+                                <%= user.name %>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <%= user.rol %>
+                            </h6>
+                            <p class="card-text">
+                                <%= user.email %>
+                            </p>
                         </div>
                     </div>
                 </div>
-            </section>
-       
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">Medico</th>
-                    <th scope="col">Horario</th>
-                    <th scope="col">Contacto</th>
-                    <th scope="col">Estado </th>
-                    <th scope="col">Opciones </th>
-                </tr>
-                </thead>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class=" ml-4  text-left"> Lista de Medicos</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Medico</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Contacto</th>
+                <th scope="col">Estado </th>
+                <th scope="col">Opciones </th>
+            </tr>
+            </thead>
 
-                <tbody >
-                    <% %>
-                    <% users.forEach(i => { %>
-                        <% if (i.rol == "Doctor") { %>
-                            <tr>
-                                <td><%= i.name %></td>
-                                <td> 9:00 a 18:00</td>
-                                <td><a href="/user/send/<%= i._id %> " ><%= i.email %></a></td>
-                                <td> 
-                                    <% if (i.availability === 'Disponible') { %>
-                                        <p class="text-success"><%= i.availability %></p>
-                                    <% } else { %>
-                                        <p class="text-danger"><%= i.availability %></p>
-                                    <% } %>
-                                <td>
-                                    <!-- <button class="btn btn-primary" id="<%= i.run %>" onclick="btnMod(`<%= i.name %>`,`<%= i.run %>`)"> Modificar </button> -->
-                                    <% if (i.availability === 'Disponible') { %>
-                                        <a class="btn btn-primary" href="/user/assing/<%= i._id %> "><i class="far fa-calendar-plus"></i></a>
-                                    <% } else { %>
-                                        <a class="btn btn-primary"><i class="far fa-calendar-plus"></i></a>
-                                    <% } %>
-                                    <a class="btn btn-primary" href="/user/availability/<%= i._id %> "><i class="fas fa-edit"></i></a>
-                                    <% if (i.availability === 'Disponible') { %>
-                                        <a class="btn btn-primary" href="/user/calendar/<%= i._id %> "><i class="far fa-calendar-alt"></i></a>
-                                    <% } else { %>
-                                        <a class="btn btn-primary"><i class="far fa-calendar-alt"></i></a>
-                                    <% } %>
-                                </td>
-                            </tr>
-                        <% } %>
-                    <%  }) %>
-                </tbody>
-            </table>
-        </div>
+            <tbody >
+                <% %>
+                <% users.forEach(i => { %>
+                    <% if (i.rol == "Doctor") { %>
+                        <tr>
+                            <td><%= i.name %></td>
+                            <td> 9:00 a 18:00</td>
+                            <td><a href="/user/send/<%= i._id %> " ><%= i.email %></a></td>
+                            <td> 
+                                <% if (i.availability === 'Disponible') { %>
+                                    <p class="text-success"><%= i.availability %></p>
+                                <% } else { %>
+                                    <p class="text-danger"><%= i.availability %></p>
+                                <% } %>
+                            <td>
+                                <% if (i.availability === 'Disponible') { %>
+                                    <a class="btn btn-primary" href="/user/assing/<%= i._id %>"><i class="far fa-calendar-plus"></i></a>
+                                <% } else { %>
+                                    <a class="btn btn-primary" href="#"><i class="far fa-calendar-plus"></i></a>
+                                <% } %>
+                                    <a class="btn btn-primary" href="/user/availability/<%= i._id %>"><i class="fas fa-edit"></i></a>
+                                <% if (i.availability === 'Disponible') { %>
+                                    <a class="btn btn-primary" href="/user/calendar/<%= i._id %>"><i class="far fa-calendar-alt"></i></a>
+                                <% } else { %>
+                                    <a class="btn btn-primary" href="#"><i class="far fa-calendar-alt"></i></a>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% } %>
+                <%  }) %>
+            </tbody>
+        </table>
+    </div>
 <% } else if (user.rol === 'Medico') { %>
     <h1>Perfil Médico</h1>
 <% } else { %>
