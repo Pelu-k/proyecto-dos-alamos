@@ -7,9 +7,9 @@ Proyecto semestral para la clase de gestión ágil de proyectos
 * [Ricardo Benites](https://github.com/dezk123)
 * [Matías Chacana](https://github.com/matiaszntc)
 * [Sebastián Lara](https://github.com/Pelu-k)
-* Ignacio Soto
-* Pablo Verdugo
-* Lisandro Zúñiga
+* [Ignacio Soto](https://github.com/Saphust)
+* [Pablo Verdugo](https://github.com/Razazele)
+* [Lisandro Zúñiga](https://github.com/lisaard)
 
 ## Caso
 
