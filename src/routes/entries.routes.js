@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const { mailConfig } = require('../config');
 
 const User = require('../models/User');
+const { render } = require('ejs');
 
 router.get('/', async (req, res, next) => {
     res.render('index');
@@ -163,6 +164,14 @@ router.post('/user/assing/:id', isAuthenticated, async (req, res, next) => {
         res.redirect('/user/profile');
     }
 });
+
+// Ver horario
+router.get('/user/calendar/:id', isAuthenticated, async (req, res, next) => {
+    const userCalendar = await User.findOne({_id: req.params.id});
+    let dateNow = new Date();
+    dateNow = Date.now()
+    res.render('calendar', {userCalendar, dateNow});
+})
 
 
 // Validar autenticación

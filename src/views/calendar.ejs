@@ -1,0 +1,26 @@
+<%- include('./layouts/header', {title: 'Calendario de horarios - Centro medico Dos Alamos'}); %> 
+
+    <div class="container formricardo">
+        <h2>Calendarios de atención de <%= userCalendar.name %> </h2>
+        <table class="table table-hover">
+           
+            <thead>
+                <tr>
+                    <th scope="col">Fecha y hora</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% userCalendar.hoursAttention.forEach(i=> { %>
+                    <tr>
+                        <% if (i> dateNow) { %>
+                            <div>
+                                <td><%= i %></td>
+                            </div>
+                        <% } %>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+<%- include('./layouts/footer'); %> 
