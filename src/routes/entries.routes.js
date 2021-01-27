@@ -5,7 +5,6 @@ const nodemailer = require('nodemailer');
 const { mailConfig } = require('../config');
 
 const User = require('../models/User');
-const { render } = require('ejs');
 
 router.get('/', async (req, res, next) => {
     res.render('index');
@@ -24,7 +23,6 @@ router.post('/register', passport.authenticate('register', {
 
 router.get('/login', isNotAuthenticated, (req, res, next) => {
     res.render('login')
-    //res.json({error: null, msg: 'Login'})
 });
 
 router.post('/login', passport.authenticate('login', {
