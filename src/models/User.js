@@ -47,7 +47,7 @@ const userSchema = new Schema({
     rol: {
         type: String,
         required: true,
-        default: "Paciente"
+        default: "Secretaria"
     },
     record: [
         {
