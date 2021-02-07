@@ -67,3 +67,5 @@ La secretaria en base a la información proporcionada por los médicos, genera l
 La secretaria del centro recibe solicitudes de horas médicas por vía telefónica y asigna las horas disponibles en base a la agenda de cada médico, la cual administra en planillas Excel. Una vez que llega el paciente, la secretaria registra la atención. Este último es un evento importante debido a que los ingresos percibidos por parte de los dueños corresponden a un porcentaje del monto de la atención. A final de mes se le genera una factura a cada médico en donde se le cobran comisiones adeudadas. Junto a la factura se entrega un detalle de las atenciones realizadas.
 
 La secretaria cumple la función de recaudadora, recibiendo el dinero y luego rindiendo a cada médico y a fin de mes a los dueños del centro.
+
+:)
